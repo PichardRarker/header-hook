@@ -8,8 +8,8 @@ requires-python = ">=3.10,<4"
 
 
 [project.urls]
-repository = "https://github.com/"
-documentation = "https://abc.github.io/"
+repository = "https://github.com/PichardRarker/header-hook"
+documentation = "https://pichardrarker.github.io/header-hook/"
 
 
 [tool.poetry]
