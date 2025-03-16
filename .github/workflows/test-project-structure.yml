@@ -44,6 +44,9 @@ jobs:
       uses: actions/checkout@v4
       with:
         ref: ${{ github.ref_name }}
-
+    - uses: snok/install-poetry@v1
+    - name: Install dependencies
+      run: |
+        poetry install --directory $GITHUB_WORKSPACE --only dev --no-interaction --no-ansi
     - name: Run project structure tests
       run: python3 $GITHUB_WORKSPACE/tests/unit/project_structure_test.py
