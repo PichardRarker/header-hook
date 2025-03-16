@@ -37,16 +37,12 @@ import os
 import tomlkit
 from tomlkit.exceptions import NonExistentKey
 
-
 #################################
 # Main
 #################################
 
 # Load config file
-src_dir = os.path.join(
-    os.path.dirname(__file__), 
-    "src"
-)
+src_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "src")
 root_dir = os.path.dirname(src_dir)
 config_file = os.path.join(root_dir, "pyproject.toml")
 with open(config_file, "rb") as f:

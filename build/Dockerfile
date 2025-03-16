@@ -1,6 +1,6 @@
 ##################################################################
 # File          : build/Dockerfile
-# Description   : Build instructions for the header-hook 
+# Description   : Build instructions for the header-hook
 #                 production environment
 # Maintainer(s) : richardgarryparker@gmail.com
 # Created       : 2025-03-16

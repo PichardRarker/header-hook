@@ -90,13 +90,7 @@ BYPASS_COMMAND_LINE = 1
 
 [tool.sphinx-pyproject]
 copyright = "2024, richard.parker@lifearc.org"
-extensions = [
-  "sphinxemoji.sphinxemoji",
-  "sphinx.ext.autodoc",
-  "sphinx.ext.napoleon",
-  "sphinx.ext.githubpages",
-  "sphinx.ext.todo",
-]
+extensions = "abc"
 templates_path = ["_templates"]
 exclude_patterns = []
 html_theme = "sphinx_rtd_theme"

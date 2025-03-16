@@ -14,7 +14,7 @@ repos:
     hooks:
       - id: create-modified-pyproject-file-for-codespell
         name: Create a modified copy of the pyproject.toml file so that codespell doesn't crash
-        entry: bash -c 'cp pyproject.toml pyprojectHOOKCOPY.toml; python3 utils/common/bump_config_cleaner.py; python3 utils/common/pyproject_mod.py --key tool.sphinx-pyproject.extensions --new_val abc; mv pyproject.toml /tmp/pyproject.toml; mv pyprojectHOOKCOPY.toml pyproject.toml'
+        entry: bash -c 'cp pyproject.toml pyprojectHOOKCOPY.toml; python3 utils/bump_config_cleaner.py; python3 utils/pyproject_mod.py --key tool.sphinx-pyproject.extensions --new_val abc; mv pyproject.toml /tmp/pyproject.toml; mv pyprojectHOOKCOPY.toml pyproject.toml'
         language: system
         always_run: true
         files: '^$'
@@ -42,7 +42,7 @@ repos:
     -   id: trailing-whitespace
 
   - repo: https://github.com/scop/pre-commit-shfmt
-    rev: v3.10.0-2
+    rev: v3.11.0-1
     hooks:
       - id: shfmt         # prebuilt upstream executable
 

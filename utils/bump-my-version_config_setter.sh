@@ -3,7 +3,7 @@
 # File          : utils/bumpy-my-version_config_setter.sh
 # Description   : Create bump-my-version configs for all Python
 #                 files that make up a code project
-# Usage         : bumpy-my-version_config_setter.sh [-h|--help] 
+# Usage         : bumpy-my-version_config_setter.sh [-h|--help]
 # Maintainer(s) : richardgarryparker@gmail.com
 # Created       : 2025-03-16
 # Last updated  : 2025-03-16
@@ -41,7 +41,7 @@ help() {
 # Basic setup
 #################################
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-BASE_DIR=$( dirname "$SCRIPT_PATH" )
+BASE_DIR=$(dirname "$SCRIPT_PATH")
 
 #################################
 # Input parsing

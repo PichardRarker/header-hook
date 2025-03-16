@@ -12,7 +12,7 @@
 |:scroll:| Some key project files (root of GitHub, or ``/app/`` within the project's Docker image):
 
 - ``.github/workflows``: Contains GitHub Actions used for code testing and publishing.
-- ``build/Dockerfile``: Configures the Docker build process 
+- ``build/Dockerfile``: Configures the Docker build process
 - ``.dockerignore``: A list of project files/directories Docker should not incorporate into the build process
 - ``.gitignore``: A list of files/directories that Git should not track
 - ``.devcontainer/devcontainer.json``: Contains the configuration for the development container for VSCode, including the Docker image to use, any additional VSCode extensions to install, and whether or not to mount the project directory into the container.
