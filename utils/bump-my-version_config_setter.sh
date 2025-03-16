@@ -17,7 +17,7 @@
 # for this file can be found in the header comment
 # block
 readonly VERSION="0.1.0"
-readonly DATE="2025-02-06"
+readonly DATE="2025-03-16"
 readonly AUTHOR="richardgarryparker@gmail.com"
 
 #################################
@@ -41,7 +41,11 @@ help() {
 # Basic setup
 #################################
 SCRIPT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/$(basename "${BASH_SOURCE[0]}")"
-BASE_DIR=$(dirname "$SCRIPT_PATH")
+UTILS_DIR=$(dirname "$SCRIPT_PATH")
+BASE_DIR=$(dirname "$UTILS_DIR")
+SRC_DIR="$BASE_DIR"/src
+TESTS_DIR="$BASE_DIR"/tests
+BUILD_DIR="$BASE_DIR"/build
 
 #################################
 # Input parsing
@@ -65,8 +69,7 @@ CURR_VER='0.1.0'
 
 # First, any pre-existing bump-my-version configs are removed
 # from pyproject.toml
-print "Removing pre-existing "$SEP"bump-my-version"$SEP" configs \
-	from "$SEP""$CONFIGS""$SEP"" "info"
+echo "Removing pre-existing \`bump-my-version\` configs from $CONFIGS"
 python3 "$BASE_DIR"/utils/bump_config_cleaner.py
 
 # Next, add in general configs

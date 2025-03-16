@@ -22,7 +22,7 @@ Change a value within a pyproject.toml file
 # codebase, these variables reflect versioning of the template
 # (`eng-toolkit-python`), and not the downstream project
 __version__ = "0.1.0"
-__date__ = "2025-02-06"
+__date__ = "2025-03-16"
 __author__ = "richardgarryparker@gmail.com"
 
 #################################

@@ -5,10 +5,10 @@
 #                      header blocks within code files
 # Command-line usage : header_hook.py INP_FILE
 # Maintainer(s)      : richard.parker@lifearc.org
-# Created            : 2025-02-08
-# Last updated       : 2025-02-08
+# Created            : 2025-03-16
+# Last updated       : 2025-03-16
 # Change Log :
-#   2025-02-08       : First release.
+#   2025-03-16       : First release.
 ##################################################################
 """header_hook.py
 Formatting and error checking of
@@ -20,8 +20,8 @@ header blocks within code files
 # as a whole, not this individual file. Datestamps
 # for this file can be found in the header comment
 # block
-__version__ = "0.0.0"
-__date__ = "1970-01-01"
+__version__ = "0.1.0"
+__date__ = "2025-03-16"
 __author__ = "richad.parker@lifearc.org"
 
 #################################

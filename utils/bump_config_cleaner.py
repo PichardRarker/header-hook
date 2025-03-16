@@ -24,7 +24,7 @@ new configs
 # for this file can be found in the header comment
 # block
 __version__ = "0.1.0"
-__date__ = "2025-02-06"
+__date__ = "2025-03-16"
 __author__ = "richardgarryparker@gmail.com"
 
 #################################

@@ -104,3 +104,86 @@ html_theme = "sphinx_rtd_theme"
 html_static_path = ["_static"]
 todo_include_todos = true
 autodoc_mock_imports = []
+
+
+[tool.bumpversion]
+current_version = "0.1.0"
+parse = "(?P<major>\\d+)\\.(?P<minor>\\d+)\\.(?P<patch>\\d+)"
+serialize = ["{major}.{minor}.{patch}"]
+search = "{current_version}"
+replace = "{new_version}"
+regex = false
+ignore_missing_version = false
+ignore_missing_files = false
+tag = true
+sign_tags = false
+tag_name = "v{new_version}"
+tag_message = "Bump version: {current_version} → {new_version}"
+allow_dirty = false
+commit = false
+message = "Bump version: {current_version} → {new_version}"
+commit_args = ""
+setup_hooks = []
+pre_commit_hooks = []
+post_commit_hooks = []
+
+
+[[tool.bumpversion.files]]
+filename = "VERSION"
+
+
+[[tool.bumpversion.files]]
+filename = 'src/header_hook/header_hook.py'
+search = "__date__ = \"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
+replace = "__date__ = \"{now:%Y-%m-%d}\""
+regex = true
+
+
+[[tool.bumpversion.files]]
+filename = 'src/header_hook/header_hook.py'
+
+
+[[tool.bumpversion.files]]
+filename = 'tests/unit/project_structure_test.py'
+search = "__date__ = \"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
+replace = "__date__ = \"{now:%Y-%m-%d}\""
+regex = true
+
+
+[[tool.bumpversion.files]]
+filename = 'tests/unit/project_structure_test.py'
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/bump-my-version_config_setter.sh'
+search = "readonly DATE=\"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
+replace = "readonly DATE=\"{now:%Y-%m-%d}\""
+regex = true
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/bump-my-version_config_setter.sh'
+search = "readonly VERSION=\"{current_version}\""
+replace = "readonly VERSION=\"{new_version}\""
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/bump_config_cleaner.py'
+search = "__date__ = \"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
+replace = "__date__ = \"{now:%Y-%m-%d}\""
+regex = true
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/bump_config_cleaner.py'
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/pyproject_mod.py'
+search = "__date__ = \"\\d{{4}}-\\d{{2}}-\\d{{2}}\""
+replace = "__date__ = \"{now:%Y-%m-%d}\""
+regex = true
+
+
+[[tool.bumpversion.files]]
+filename = 'utils/pyproject_mod.py'

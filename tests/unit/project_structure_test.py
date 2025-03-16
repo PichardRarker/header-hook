@@ -19,7 +19,7 @@ Basic tests to ensure the project structure is intact
 # for this file can be found in the header comment
 # block
 __version__ = "0.1.0"
-__date__ = "2025-03-03"
+__date__ = "2025-03-16"
 __author__ = "richardgarryparker@gmail.com"
 #################################
 # Imports
