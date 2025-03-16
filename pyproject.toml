@@ -33,6 +33,7 @@ pylint = { version = ">=3.3.4" }
 pytest = { version = ">=8.3.4" }
 pytest-env = { version = ">=1.1.5" }
 flake8-pyproject = "^1.2.3"
+tomli = "^2.2.1"
 
 
 [tool.poetry.group.docs.dependencies]
