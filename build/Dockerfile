@@ -30,9 +30,10 @@ COPY ./tests /app/tests
 COPY ./utils /app/utils
 # Add GitHub pre-commit hook configuration file
 COPY ./.pre-commit-config.yaml /app/.pre-commit-config.yaml
-# Add main project configuration file
+# Add project configuration files
 COPY ./pyproject.toml /app/pyproject.toml
 COPY ./VERSION /app/VERSION
+COPY ./README.md /app/README.md
 
 
 #################################
