@@ -1,0 +1,35 @@
+##################################################################
+# File               : .github/dependabot.yml
+# Description        : Automatic checking for dependency updates
+# Maintainer(s)      : richardgarryparker@gmail.com
+# Created            : 2025-03-16
+# Last updated       : 2025-03-16
+# Change Log :
+#   2025-03-16       : First release
+##################################################################
+
+version: 2
+updates:
+- package-ecosystem: pip
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - PichardRarker
+  allow:
+  - dependency-type: direct
+  - dependency-type: indirect
+  commit-message:
+    prefix: "fix: "
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "13:00"
+  commit-message:
+    prefix: "fix: "
+  reviewers:
+    - PichardRarker 
+  

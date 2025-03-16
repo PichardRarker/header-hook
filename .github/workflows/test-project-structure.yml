@@ -1,0 +1,49 @@
+##################################################################
+# File               : .github/workflows/test-project-structure.yml
+# Description        : GitHub Action for performing project unit
+#                      tests, suitable for foundation project code
+# Maintainer(s)      : richardgarryparker@gmail.com
+# Created            : 2025-03-16
+# Last updated       : 2025-03-16
+# Change Log :
+#   2025-03-16       : First release
+##################################################################
+name: Test project structure
+
+on: [push]
+
+env:
+  # Change this value if the Docker registry changes
+  REGISTRY: ghcr.io
+
+jobs:
+  # This first step is necessary because the container setup
+  # process won't accept environment variables (but will accept
+  # variables defined in preceding steps), and also because we need
+  # to convert upper-case repo characters to lower-case.
+  # See: https://bit.ly/4aBLXtz and https://bit.ly/42CBcVY
+  prep:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "IMAGE_NAME=${GITHUB_REPOSITORY@L}" >> ${GITHUB_ENV}
+    outputs:
+      image: ${{ env.IMAGE_NAME }}
+      registry: ${{ env.REGISTRY }}
+
+  testing:
+    runs-on: ubuntu-22.04
+    needs: [prep]
+    container:
+      image: ${{ needs.prep.outputs.registry }}/${{ needs.prep.outputs.image }}:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.github_token }}
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        ref: ${{ github.ref_name }}
+
+    - name: Run project structure tests
+      run: python3 $GITHUB_WORKSPACE/tests/common/unit/project_structure_test.py

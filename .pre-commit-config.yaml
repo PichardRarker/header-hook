@@ -1,0 +1,98 @@
+##################################################################
+# File               : .pre-commit-config.yaml
+# Description        : Configures pre-commit hooks for the
+#                      header-hook project
+# Maintainer(s)      : richardgarryparker@gmail.com
+# Created            : 2025-03-16
+# Last updated       : 2025-03-16
+# Change Log :
+#   2025-03-16       : First release
+##################################################################
+
+repos:
+  - repo: local
+    hooks:
+      - id: create-modified-pyproject-file-for-codespell
+        name: Create a modified copy of the pyproject.toml file so that codespell doesn't crash
+        entry: bash -c 'cp pyproject.toml pyprojectHOOKCOPY.toml; python3 utils/common/bump_config_cleaner.py; python3 utils/common/pyproject_mod.py --key tool.sphinx-pyproject.extensions --new_val abc; mv pyproject.toml /tmp/pyproject.toml; mv pyprojectHOOKCOPY.toml pyproject.toml'
+        language: system
+        always_run: true
+        files: '^$'
+
+  - repo: https://github.com/psf/black
+    rev: 25.1.0  # Use the latest version of Black
+    hooks:
+      - id: black
+        args: [--line-length=79]
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+    -   id: check-added-large-files
+        args: ['--maxkb=500']
+    -   id: check-executables-have-shebangs
+    -   id: check-shebang-scripts-are-executable
+    -   id: check-yaml
+    -   id: debug-statements
+    -   id: check-symlinks
+    -   id: end-of-file-fixer
+    -   id: mixed-line-ending
+    -   id: requirements-txt-fixer
+    -   id: name-tests-test
+    -   id: trailing-whitespace
+
+  - repo: https://github.com/scop/pre-commit-shfmt
+    rev: v3.10.0-2
+    hooks:
+      - id: shfmt         # prebuilt upstream executable
+
+  - repo: https://github.com/pycqa/isort
+    rev: 6.0.1
+    hooks:
+      - id: isort
+        name: isort (python)
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.19.1
+    hooks:
+      - id: pyupgrade
+        args: [--py37-plus]
+
+  - repo: https://github.com/hadialqattan/pycln
+    rev: v2.5.0 # Possible releases: https://github.com/hadialqattan/pycln/releases
+    hooks:
+      - id: pycln
+        args: [--config=pyproject.toml, --all, ./src, .tests]
+
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.1
+    hooks:
+      - id: codespell
+        args: ["--config", "/tmp/pyproject.toml"]
+        additional_dependencies:
+          - tomli
+
+  - repo: https://github.com/pre-commit/pygrep-hooks
+    rev: v1.10.0
+    hooks:
+      - id: python-check-blanket-noqa
+      - id: python-check-blanket-type-ignore
+      - id: python-no-log-warn
+      - id: python-no-eval
+      - id: python-use-type-annotations
+      - id: rst-backticks
+      - id: rst-directive-colons
+      - id: rst-inline-touching-normal
+
+  - repo: https://github.com/ComPWA/taplo-pre-commit
+    rev: v0.9.3
+    hooks:
+      - id: taplo-format
+
+  - repo: local
+    hooks:
+      - id: pyproject-version-sync
+        name: Ensure pyproject and bumpmyversion are in sync
+        entry: bash -c "poetry version $(cat ./VERSION)"
+        language: system
+        always_run: true

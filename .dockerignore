@@ -1,0 +1,9 @@
+# Ignore all instances of __pycache__
+**/__pycache__
+# Ignore all .gitkeep files (these files force Git
+# to track empty directories, but are not needed
+# by Docker)
+**/.gitkeep
+*.gitkeep
+*/.gitkeep
+**/*/.gitkeep

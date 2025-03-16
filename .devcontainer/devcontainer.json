@@ -1,0 +1,71 @@
+// More info: https://containers.dev/implementors/json_reference/
+// Elevated Docker permissions required for CTERA mounting within
+// the container environment
+// By default, the local project repository is mounted to the container
+// folder `/workspaces`. In order to mount the local project folder to `/app`
+// (meaning that the project files on the local machine directly replace the
+// project files in the container, useful for development), change the value of
+// `workspaceFolder` to "/app", and change any subsequent reference to the
+// remote "/workspaces" directory in the subsequent sections of the YAML file
+{
+	"name": "My Dev Container",
+	"image": "ghcr.io/pichardrarker/header-hook:latest",
+	"workspaceFolder": "/workspaces",
+	"workspaceMount": "source=${localWorkspaceFolder},target=/workspaces,type=bind",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"editorconfig.editorconfig",
+				"github.vscode-pull-request-github",
+		        "GitHub.vscode-github-actions",
+				"ms-azuretools.vscode-docker",
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-python.pylint",
+				"ms-python.isort",
+				"ms-python.flake8",
+				"ms-python.black-formatter",
+				"ms-vsliveshare.vsliveshare",
+				"brunnerh.file-properties-viewer",
+				"lextudio.restructuredtext",
+				"trond-snekvik.simple-rst",
+				"swyddfa.esbonio@0.96.1",
+				"ryanluker.vscode-coverage-gutters",
+				"tamasfe.even-better-toml",
+				"njpwerner.autodocstring",
+				"DavidAnson.vscode-markdownlint"
+			],
+			"settings": {
+				"terminal.integrated.shell.linux": "/bin/bash",
+				"python.defaultInterpreterPath": "/usr/bin/python3",
+				"restructuredtext.confPath": "/workspaces/docs/source",
+				"restructuredtext.linter.doc8.extraArgs": [
+					"--ignore D001"
+				],
+				"restructuredtext.linter.rstcheck.extraArgs": [
+					"--config pyproject.toml"
+				],
+				"black-formatter.path": [
+					"/usr/local/bin/black"
+				],
+				"pylint.path": [
+					"/usr/local/bin/pylint"
+				],
+				"flake8.path": [
+					"/usr/local/bin/flake8"
+				],
+				"isort.path": [
+					"/usr/local/bin/isort"
+				],
+				"[markdown]": {
+					"editor.formatOnSave": true
+				}
+			}
+		}
+	},
+	"remote.containers.defaultExtensions": [
+		"njpwerner.autodocstring"
+	],
+	"initializeCommand": "docker pull ghcr.io/pichardrarker/header-hook:latest",
+	"postCreateCommand": "cd /workspaces && git config --global --add safe.directory /workspaces && poetry config cache-dir /workspaces/.cache && poetry install --only dev,docs && pre-commit install && pre-commit autoupdate && poetry version $( cat /workspaces/VERSION ) && echo 'Dev container ready!'"
+}

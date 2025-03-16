@@ -1,0 +1,54 @@
+##################################################################
+# File               : .github/workflows/gh-pages.yml
+# Description        : GitHub Action for creating a Sphinx
+#                      documentation site, including code autodoc
+# Maintainer(s)      : richardgarryparker@gmail.com
+# Created            : 2025-03-16
+# Last updated       : 2025-03-16
+# Change Log :
+#   2025-03-16       : First release
+##################################################################
+name: Create Sphinx documentation site
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  # This is the name of the repository without the repository owner
+  REPO_NAME: ${{ github.event.repository.name }}
+
+jobs:
+  docs:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: snok/install-poetry@v1
+      - name: Install dependencies
+        run: |
+          poetry install --directory $GITHUB_WORKSPACE --only docs --no-interaction --no-ansi
+      - name: Autodoc code
+        run: |
+          poetry run sphinx-apidoc -f -e -H $REPO_NAME -o $GITHUB_WORKSPACE/docs/source/code $GITHUB_WORKSPACE/src
+      - name: Sphinx build
+        run: |
+          poetry run sphinx-build docs/source build
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        with:
+          publish_branch: gh-pages
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: build/
+          force_orphan: true
