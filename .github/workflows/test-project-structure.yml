@@ -46,4 +46,4 @@ jobs:
         ref: ${{ github.ref_name }}
 
     - name: Run project structure tests
-      run: python3 $GITHUB_WORKSPACE/tests/common/unit/project_structure_test.py
+      run: python3 $GITHUB_WORKSPACE/tests/unit/project_structure_test.py
