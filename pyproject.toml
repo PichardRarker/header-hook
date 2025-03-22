@@ -88,6 +88,11 @@ disable = ["C0301"]
 [tool.pytest-env]
 BYPASS_COMMAND_LINE = 1
 
+[tool.pytest.ini_options]
+markers = [
+  "end_to_end: Marks tests as end-to-end tests. These tests check the full header-hook workflow.",
+]
+
 
 [tool.sphinx-pyproject]
 copyright = "2025, richardgarryparker@gmail.com"
