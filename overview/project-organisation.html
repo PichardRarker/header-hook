@@ -1,0 +1,129 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🗃️ Project Organisation &mdash; header-hook 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=01f34227"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="🔧 Dependencies" href="dependencies.html" />
+    <link rel="prev" title="🚄 Quickstart" href="quickstart.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            header-hook
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="compact-overview.html">🔍 Compact Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">🚄 Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">🗃️ Project Organisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dependencies.html">🔧 Dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="further-reading.html">📚 Further reading</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">header-hook</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">🗃️ Project Organisation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/overview/project-organisation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="card-file-box-project-organisation">
+<h1>🗃️ Project Organisation<a class="headerlink" href="#card-file-box-project-organisation" title="Link to this heading"></a></h1>
+<p>📁 Some key project directories (all found at <code class="docutils literal notranslate"><span class="pre">/app</span></code> within the project’s Docker container):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">build</span></code>: Files used to build the project Docker image go here</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">src</span></code>: <code class="docutils literal notranslate"><span class="pre">header-hook</span></code> source code lives here</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tests</span></code>: Contains Python-based test cases to validate <code class="docutils literal notranslate"><span class="pre">header-hook</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: Contains lightweight files for use in <code class="docutils literal notranslate"><span class="pre">header-hook</span></code> testing</p></li>
+</ul>
+<p>📜 Some key project files (root of GitHub, or <code class="docutils literal notranslate"><span class="pre">/app/</span></code> within the project’s Docker image):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>: Contains GitHub Actions used for code testing and publishing.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">build/Dockerfile</span></code>: Configures the Docker build process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.dockerignore</span></code>: A list of project files/directories Docker should not incorporate into the build process</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>: A list of files/directories that Git should not track</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.devcontainer/devcontainer.json</span></code>: Contains the configuration for the development container for VSCode, including the Docker image to use, any additional VSCode extensions to install, and whether or not to mount the project directory into the container.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./pyproject.toml</span></code>: This file stores high-level project configuration options.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="🚄 Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dependencies.html" class="btn btn-neutral float-right" title="🔧 Dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, richardgarryparker@gmail.com.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
