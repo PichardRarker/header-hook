@@ -72,5 +72,5 @@ def setup_and_teardown(request):
     yield inp_new
 
     # Cleanup after test execution
-    # shutil.rmtree(temp_test_dir)
+    shutil.rmtree(temp_test_dir)
     print("Done!")

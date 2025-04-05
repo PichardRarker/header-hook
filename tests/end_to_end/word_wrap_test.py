@@ -35,6 +35,9 @@ __author__ = "richardgarryparker@gmail.com"
 # 3rd party
 import pytest
 
+# Project-specific
+from tests.helpers.helpers_end_to_end import run_hook
+
 #################################
 # Tests
 #################################
@@ -45,6 +48,8 @@ def test_wrapping_with_no_other_issues(setup_and_teardown):
     test_input = setup_and_teardown
     # Ensure the input file is copied correctly
     assert test_input.exists()
+    # Apply the hook to the test data
+    run_hook(test_input)
     print("Done!")
 
     # Perform formatting operation and assertions

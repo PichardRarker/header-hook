@@ -12,7 +12,7 @@
             "program": "${workspaceFolder}/src/header_hook/header_hook.py",
             "console": "integratedTerminal",
             "args": [
-                "/workspaces/data/tests/integration/header_hook/input/word_wrap_test.py"
+                "/workspaces/data/tests/end_to_end/test_wrapping_with_no_other_issues/input.py"
 
             ]
         },

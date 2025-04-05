@@ -551,8 +551,11 @@ def create_new_file(
         None
     """
     new_file_contents = []
-    # First, shebang and opening divider
-    new_file_contents.append(header.shebang + "\n" + SEP + "\n")
+    # First, shebang if it exists
+    if header.shebang:
+        new_file_contents.append(header.shebang + "\n")
+    # Next, opening divider
+    new_file_contents.append(SEP + "\n")
     # Next we iterate through standard keys (in the expected order)
     # followed by dates (in reverse chronological order)
     for key, val, is_changelog in header:
@@ -584,9 +587,6 @@ def create_new_file(
     # TODO: change file save to be in-place
     new_file_contents.append(SEP + "\n")
     new_file_contents += non_header
-    file_path = file_path.split(".py")[0] + "_mod.py"
-    if os.path.exists(file_path):
-        os.remove(file_path)
     with open(file_path, "w") as f:
         f.writelines(new_file_contents)
 
@@ -626,7 +626,7 @@ def check_release_date(h: HeaderBlock, branch: str = "main") -> None:
     # too long)
     # Set release date to the first date the file
     # appeared on the main branch
-    git_cmd = f"git log --diff-filter=A --follow --format=%aD -1 {branch} -- {filepath}"
+    git_cmd = f"git log --diff-filter=A --follow --format=%cd -1 {branch} -- {filepath}"
     try:
         rel_date = ask_git(git_cmd)
     except GitError:
@@ -708,11 +708,11 @@ def changelog_trim(h: HeaderBlock) -> None:
 def chain(file_to_proc: str) -> None:
     # Load file
     with open(file_to_proc) as f:
-        file_contexts = f.readlines()
+        file_contents = f.readlines()
     # Attempt to convert header block
     # to dict, and split off the rest of the
     # file
-    header, the_rest = load_meta(file_contexts)
+    header, the_rest = load_meta(file_contents)
     # Ensure "Last updated" date is synced with the
     # change log
     update_last_updated(header)
